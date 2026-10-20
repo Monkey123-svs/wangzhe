@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <!-- 移动端核心配置：禁止缩放、适配屏幕 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>上号，我玩游走</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+            height: 100%;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .main-img {
+            width: 95vw;
+            height: auto;
+            max-height: 95vh;
+            object-fit: contain;
+        }
+        /* 分享按钮样式 */
+        .share-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 24px;
+            border: none;
+            border-radius: 999px;
+            background: #333;
+            color: #fff;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    < img class="main-img" src="https://p3-flow-image-sign.byteimg.com/tos-cn-i-a9rns2rl98/2a100100803440389d33141004202151~tplv-a9rns2rl98-image.image" alt="上号，我玩游走">
+    <button class="share-btn" onclick="sharePic()">🔗 一键分享</button>
+
+    <script>
+        async function sharePic() {
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: '上号，我玩游走',
+                        text: '王者荣耀游走猫猫表情包！',
+                        url: window.location.href
+                    })
+                } catch (err) {
+                    alert('分享取消或者浏览器不支持，直接复制链接发给朋友吧：' + window.location.href)
+                }
+            } else {
+                // 不支持原生分享就复制链接
+                navigator.clipboard.writeText(window.location.href)
+                alert('链接已经复制好啦！')
+            }
+        }
+    </script>
+</body>
+</html>
